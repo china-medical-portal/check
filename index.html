@@ -3,50 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>中国医疗认证系统 | China Medical Auth</title>
+    <title>China Health Commission Verification</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f4f4f4; margin: 0; }
-        /* মেনুবার */
-        .navbar { background: #cc0000; padding: 15px; color: white; display: flex; justify-content: space-between; align-items: center; }
-        .logo-text { font-weight: bold; font-size: 18px; }
-        
+        body { font-family: 'Segoe UI', Arial; background: #f4f4f4; margin: 0; }
+        .header { background: #cc0000; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .logo-img { width: 40px; background: white; border-radius: 50%; padding: 2px; }
+        .menu-btn { font-size: 24px; cursor: pointer; }
         .container { padding: 20px; max-width: 450px; margin: auto; background: white; border-radius: 0 0 10px 10px; }
-        input, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; box-sizing: border-box; }
         button { background: #cc0000; color: white; border: none; font-weight: bold; cursor: pointer; }
         
-        /* अबाउट সেকশন */
-        .about { font-size: 12px; color: #666; margin-top: 20px; line-height: 1.6; border-top: 1px solid #eee; padding-top: 10px; }
-        .contact { background: #fff8f8; padding: 10px; margin-top: 15px; border-left: 4px solid #cc0000; font-size: 13px; }
+        .report-box { position: relative; margin-top: 20px; border: 2px solid #333; padding: 10px; background: white; }
+        .watermark { position: absolute; top: 40%; left: 10%; color: rgba(200,0,0,0.1); font-size: 30px; transform: rotate(-45deg); font-weight: bold; pointer-events: none; }
+        .stamp { position: absolute; top: 10px; right: 10px; border: 3px solid #000080; color: #000080; padding: 5px; font-weight: bold; transform: rotate(-15deg); opacity: 0.6; }
         
-        .report-box { margin-top: 20px; border: 1px solid #999; padding: 10px; position: relative; }
-        .stamp { position: absolute; top: 15px; right: 15px; border: 3px solid #000080; color: #000080; padding: 5px; font-weight: bold; transform: rotate(-15deg); opacity: 0.5; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-        th, td { border: 1px solid #999; padding: 6px; text-align: left; }
+        .info-box { font-size: 12px; color: #555; margin-top: 20px; border-top: 2px solid #cc0000; padding-top: 10px; }
+        .rules { text-align: left; margin-top: 10px; font-size: 11px; color: #333; }
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    <div class="logo-text">中国医疗检查中心</div>
-    <div>≡</div>
+<div class="header">
+    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" class="logo-img">
+    <div style="font-weight:bold;">中国医疗检查中心</div>
+    <div class="menu-btn">☰</div>
 </div>
 
 <div class="container">
-    <h3 style="color:#cc0000; text-align:center;">官方查询系统 (Official Portal)</h3>
-    <input type="text" id="passport" placeholder="输入护照号码 (Passport No)">
-    <input type="text" id="mobile" placeholder="输入手机号码 (Mobile No)">
-    <button onclick="checkReport()">立即查询 (Verify)</button>
+    <h3 style="text-align:center;">Official Verification Portal / 官方验证系统</h3>
+    <input type="text" id="passport" placeholder="Passport No / 护照号码">
+    <input type="text" id="mobile" placeholder="Mobile No / 手机号码">
+    <button onclick="checkReport()">Verify / 验证</button>
     
     <div id="result"></div>
 
-    <div class="contact">
-        <strong>📞 服务热线 (Service Hotline):</strong> +86 10-6512-4422<br>
-        <strong>📧 支持邮箱 (Support):</strong> info@health-china.org.cn
-    </div>
+    <div class="info-box">
+        <h4>About Us / 关于我们</h4>
+        <p>Providing high-quality medical verification services for international travelers. / 为国际旅行者提供高质量的医疗验证服务。</p>
+        
+        <h4>Rules & Regulations / 医疗法规</h4>
+        <div class="rules">
+            1. Report is mandatory for entry. / 入境必须持有健康报告。<br>
+            2. Forgery is a legal offense. / 伪造报告属于违法行为。<br>
+            3. Verification is valid for 90 days. / 验证有效期为90天。
+        </div>
 
-    <div class="about">
-        <strong>关于我们 (About Us):</strong><br>
-        中国医疗检查中心负责对外劳务及留学生的医疗健康档案认证。本系统提供实时数据查询，确保健康报告的真实性与合规性。
+        <div style="margin-top:15px; font-weight:bold;">📞 Hotline: +86-10-88889999</div>
     </div>
 </div>
 
@@ -59,19 +61,19 @@ function checkReport() {
     if(p === "A11758023" && m === "01407873051") {
         res.innerHTML = `
             <div class="report-box">
+                <div class="watermark">OFFICIAL</div>
                 <div class="stamp">VERIFIED</div>
                 <img src="https://i.imgur.com/nQeMY9y.jpeg" style="width:100%;">
-                <table>
-                    <tr><th>项目 (Test)</th><th>结果 (Result)</th></tr>
-                    <tr><td>心电图 (ECG)</td><td>正常 (Normal)</td></tr>
-                    <tr><td>梅毒 (Syphilis)</td><td>阴性 (Negative)</td></tr>
-                    <tr><td>艾滋病 (HIV)</td><td>阴性 (Negative)</td></tr>
-                    <tr><td>胸片 (X-ray)</td><td>清晰 (Clear)</td></tr>
+                <table style="width:100%; border-collapse:collapse; margin-top:10px; font-size:13px;">
+                    <tr><th>Test / 项目</th><th>Result / 结果</th></tr>
+                    <tr><td>ECG / 心电图</td><td>Normal / 正常</td></tr>
+                    <tr><td>Syphilis / 梅毒</td><td>Negative / 阴性</td></tr>
+                    <tr><td>HIV / 艾滋病</td><td>Negative / 阴性</td></tr>
                 </table>
             </div>
         `;
     } else {
-        res.innerHTML = '<p style="color:red; text-align:center;">未找到记录 (No Record Found)</p>';
+        res.innerHTML = '<p style="color:red; text-align:center;">No Record Found / 未找到记录</p>';
     }
 }
 </script>
