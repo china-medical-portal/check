@@ -3,53 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Official Medical Report</title>
+    <title>Medical Verification System | 医疗检查系统</title>
     <style>
-        body { font-family: 'Segoe UI', Arial; background: #eef2f5; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 20px; width: 95%; max-width: 400px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-top: 8px solid #c8102e; box-sizing: border-box; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial; background: #eef2f5; margin: 0; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding-top: 20px; }
+        .container { background: white; padding: 20px; width: 95%; max-width: 450px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 8px solid #c8102e; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
         button { width: 100%; padding: 12px; background: #c8102e; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
         
-        /* রিপোর্টের স্টাইল - যেখানে সিল ও টেবিল ছবির ওপর থাকবে */
-        .report-wrapper { position: relative; margin-top: 20px; border: 2px solid #333; padding: 5px; background: white; }
-        .stamp { position: absolute; top: 20px; right: 20px; border: 3px solid #000080; color: #000080; padding: 10px; font-weight: bold; transform: rotate(-15deg); opacity: 0.7; z-index: 10; }
-        .overlay-table { position: absolute; bottom: 10px; left: 5px; width: 96%; background: rgba(255, 255, 255, 0.85); font-size: 11px; border: 1px solid #333; }
-        .sign { text-align: right; margin-top: 10px; font-size: 12px; font-family: cursive; }
+        /* রিপোর্ট সেকশন */
+        .report-box { margin-top: 20px; border: 1px solid #ddd; padding: 10px; position: relative; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; text-align: left; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #f4f4f4; color: #333; }
+        .stamp { position: absolute; top: 10px; right: 10px; border: 3px solid #000080; color: #000080; padding: 5px; font-weight: bold; transform: rotate(-15deg); opacity: 0.6; pointer-events: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Medical Report</h2>
+    <h2 style="color: #c8102e; text-align: center;">Medical Report</h2>
+    <div style="text-align: center; color: #555; margin-bottom: 15px;">中国医疗检查验证系统</div>
+    
     <input type="text" id="passport" placeholder="Passport Number">
     <input type="text" id="mobile" placeholder="Mobile Number">
-    <button onclick="checkReport()">Verify</button>
+    <button onclick="checkReport()">Verify / 验证</button>
+    
     <div id="result"></div>
 </div>
 
 <script>
 function checkReport() {
+    let res = document.getElementById("result");
     let p = document.getElementById("passport").value;
     let m = document.getElementById("mobile").value;
-    let res = document.getElementById("result");
     
     if(p === "A11758023" && m === "01407873051") {
         res.innerHTML = `
-            <div class="report-wrapper">
+            <div class="report-box">
+                <div class="stamp">VERIFIED</div>
                 <img src="https://i.imgur.com/nQeMY9y.jpeg" style="width:100%;">
-                <div class="stamp">VERIFIED<br>OFFICIAL</div>
-                <table class="overlay-table">
-                    <tr><th>Test</th><th>Result</th></tr>
-                    <tr><td>ECG</td><td>Normal</td></tr>
-                    <tr><td>Syphilis</td><td>Negative</td></tr>
-                    <tr><td>HIV</td><td>Negative</td></tr>
-                    <tr><td>Chest X-ray</td><td>Clear</td></tr>
+                <table>
+                    <tr><th>Test / 项目</th><th>Result / 结果</th></tr>
+                    <tr><td>ECG / 心电图</td><td>Normal / 正常</td></tr>
+                    <tr><td>Syphilis / 梅毒</td><td>Negative / 阴性</td></tr>
+                    <tr><td>HIV / 艾滋病</td><td>Negative / 阴性</td></tr>
+                    <tr><td>Chest X-ray / 胸片</td><td>Clear / 清晰</td></tr>
                 </table>
+                <div style="margin-top:15px; font-size: 12px; color: #777; text-align: center;">
+                    Ref ID: CN-882910 | 官方认证 (Official)
+                </div>
             </div>
-            <div class="sign">Authorized Signature: <i>Dr. Zhang Wei</i></div>
         `;
     } else {
-        res.innerHTML = '<p style="color:red; margin-top:15px;">Record not found!</p>';
+        res.innerHTML = '<p style="color:red; text-align:center; margin-top:15px;">Record not found / 未找到记录</p>';
     }
 }
 </script>
