@@ -56,6 +56,7 @@ function toggleMenu() {
     m.style.display = (m.style.display === "block") ? "none" : "block";
 }
 
+// শু
 function checkReport() {
     let loader = document.getElementById("loader");
     let res = document.getElementById("result");
@@ -67,7 +68,8 @@ function checkReport() {
         let p = document.getElementById("passport").value;
         let m = document.getElementById("mobile").value;
         
-        if(p === "A11758023" && m === "01407873051") {
+    
+        if((p === "A11758023" && m === "01407873051") || (p === "A22231008" && m === "01794492265")) {
             res.innerHTML = `
                 <div class="report-box">
                     <div class="stamp">VERIFIED</div>
@@ -80,9 +82,9 @@ function checkReport() {
                         <tr><td>胸片 (Chest X-ray)</td><td>Clear / 清晰</td></tr>
                     </table>
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=Verified-CN-882910" alt="QR">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=Verified-${p}" alt="QR">
                         <div style="font-size:11px; text-align:right;">
-                            <b>Ref ID: CN-882910-A</b><br>
+                            <b>Ref ID: CN-${Math.floor(Math.random()*99999)}</b><br>
                             Auth: <i>Dr. Zhang Wei</i>
                         </div>
                     </div>
@@ -96,6 +98,7 @@ function checkReport() {
             res.innerHTML = '<p style="color:red; text-align:center; font-weight:bold;">未找到记录 (No Record Found)</p>';
         }
     }, 2000);
+}
 }
 </script>
 </body>
