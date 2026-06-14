@@ -6,9 +6,10 @@
     <title>Official Medical Portal | 中国医疗</title>
     <style>
         body { font-family: 'Arial', sans-serif; background: #f0f0f0; margin: 0; }
-        .header { background: #cc0000; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .header { background: #cc0000; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; }
         .logo-box { display: flex; align-items: center; gap: 10px; font-weight: bold; }
         .menu-btn { font-size: 25px; cursor: pointer; }
+        /* মেনুর স্টাইল */
         .menu-content { display: none; background: white; border-bottom: 3px solid #cc0000; padding: 10px; }
         .menu-content a { display: block; padding: 12px; text-decoration: none; color: #333; border-bottom: 1px solid #eee; font-weight: bold; }
         
@@ -16,11 +17,9 @@
         input, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
         button { background: #cc0000; color: white; font-weight: bold; cursor: pointer; }
         
-        /* উন্নত রিপোর্ট লেআউট */
+        #loader { display: none; text-align: center; color: #cc0000; font-weight: bold; margin: 20px 0; }
         .report-box { margin-top: 25px; border: 2px solid #333; padding: 15px; background: white; position: relative; }
-        /* সিল এখন ছবির ওপর ডানদিকের কর্নারে */
         .stamp { position: absolute; top: 100px; right: 20px; border: 3px solid #000080; color: #000080; padding: 10px; font-weight: bold; transform: rotate(-15deg); opacity: 0.5; z-index: 10; pointer-events: none; }
-        
         .table-area { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 13px; }
         .table-area th, .table-area td { border: 1px solid #333; padding: 8px; text-align: left; }
         .footer-text { font-size: 11px; color: #333; text-align: center; margin-top: 20px; line-height: 1.6; border-top: 1px solid #ccc; padding-top: 10px; }
@@ -37,10 +36,10 @@
 </div>
 
 <div id="menu" class="menu-content">
-    <a href="#">首页 (Home)</a>
-    <a href="#">医院简介 (About)</a>
-    <a href="#">医疗法规 (Rules)</a>
-    <a href="#">联系我们 (Contact)</a>
+    <a href="index.html">首页 (Home)</a>
+    <a href="about.html">医院简介 (About)</a>
+    <a href="rules.html">医疗法规 (Rules)</a>
+    <a href="contact.html">联系我们 (Contact)</a>
 </div>
 
 <div class="container">
@@ -48,7 +47,7 @@
     <input type="text" id="mobile" placeholder="Mobile No (手机号码)">
     <button onclick="checkReport()">立即查询 (Verify)</button>
     
-    <div id="loader" style="display:none; text-align:center; color:#cc0000; margin:15px;">Processing... 正在核实...</div>
+    <div id="loader">Processing... 正在核实...</div>
     <div id="result"></div>
 </div>
 
@@ -81,10 +80,6 @@ function checkReport() {
                         <tr><td>艾滋病 (HIV)</td><td>Negative / 阴性</td></tr>
                         <tr><td>胸片 (Chest X-ray)</td><td>Clear / 清晰</td></tr>
                     </table>
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=Verified" alt="QR">
-                        <div style="font-size:11px; text-align:right;">Ref: CN-882910-A<br>Auth: <i>Dr. Zhang Wei</i></div>
-                    </div>
                 </div>
                 <div class="footer-text">
                     © 2026 中国医疗委员会 (National Health Commission)<br>
