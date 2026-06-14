@@ -67,11 +67,16 @@ function checkReport() {
         let p = document.getElementById("passport").value;
         let m = document.getElementById("mobile").value;
         
-        if((p === "A11758023" && m === "01407873051") || (p === "A22231008" && m === "01794492265")) {
+        // উভয় ইউজারের তথ্য এখানে চেক হচ্ছে
+        let isUser1 = (p === "A11758023" && m === "01407873051");
+        let isUser2 = (p === "A22231008" && m === "01794492265");
+        
+        if(isUser1 || isUser2) {
+            let imgLink = isUser1 ? "https://i.imgur.com/nQeMY9y.jpeg" : "https://i.imgur.com/ibqu4TL.jpeg";
             res.innerHTML = `
                 <div class="report-box">
                     <div class="stamp">VERIFIED</div>
-                    <img src="https://i.imgur.com/nQeMY9y.jpeg" style="width:100%; border:1px solid #ccc;">
+                    <img src="${imgLink}" style="width:100%; border:1px solid #ccc;">
                     <table class="table-area">
                         <tr><th>项目 (Test)</th><th>结果 (Result)</th></tr>
                         <tr><td>心电图 (ECG)</td><td>Normal / 正常</td></tr>
@@ -80,9 +85,9 @@ function checkReport() {
                         <tr><td>胸片 (Chest X-ray)</td><td>Clear / 清晰</td></tr>
                     </table>
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:15px;">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=Verified-CN-882910" alt="QR">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=Verified-${p}" alt="QR">
                         <div style="font-size:11px; text-align:right;">
-                            <b>Ref ID: CN-882910-A</b><br>
+                            <b>Ref ID: CN-${Math.floor(Math.random()*99999)}</b><br>
                             Auth: <i>Dr. Zhang Wei</i>
                         </div>
                     </div>
